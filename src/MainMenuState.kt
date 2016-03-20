@@ -14,7 +14,7 @@ import javafx.scene.text.Text
 import javafx.stage.FileChooser
 import javafx.stage.Stage
 
-class MainMenuState : Application() {
+class MainMenuState : Application(), IState {
 
     override fun start(stage: Stage) {
         stage.title = "OpenCV - Projeto"
@@ -39,9 +39,9 @@ class MainMenuState : Application() {
         fileSelectionButton.onAction = EventHandler<ActionEvent> {
             val file = fileChooser.showOpenDialog(stage)
 
-            if(file != null) {
-                val image = Image(file.inputStream())
-                imageView.image = image
+            if (file != null) {
+                Context.image = Image(file.inputStream())
+                imageView.image = Context.image
                 imageView.fitHeight = 300.0
                 imageView.isPreserveRatio = true
             }
@@ -52,24 +52,46 @@ class MainMenuState : Application() {
         hbFileSelection.children.add(fileSelectionButton)
         grid.add(hbFileSelection, 0, 2)
 
-        val meanAndMedian = Button("1 - Média e mediana")
-        val borderDetection = Button("2 - Detecção de bordas")
-        val histogramEqualization = Button("3 - Equalização de histograma")
+        val (meanAndMedian, borderDetection, histogramEqualization) = setupButtons(stage)
+
         val hbBtn = HBox(10.0)
         hbBtn.alignment = Pos.BOTTOM_RIGHT
-        hbBtn.children.add(meanAndMedian)
-        hbBtn.children.add(borderDetection)
-        hbBtn.children.add(histogramEqualization)
+        hbBtn.children.addAll(meanAndMedian, borderDetection, histogramEqualization)
         grid.add(hbBtn, 0, 3)
 
         val actionTarget = Text()
         grid.add(actionTarget, 1, 4)
 
+        stage.isMaximized = true
         stage.show()
     }
 
+    private fun setupButtons(stage: Stage): Triple<Button, Button, Button> {
+        val meanAndMedian = Button("1 - Média e mediana")
+        meanAndMedian.onAction = EventHandler<ActionEvent> {
+            StateManager.changeState(MeanAndMedianMenuState(), stage)
+        }
+        val borderDetection = Button("2 - Detecção de bordas")
+        borderDetection.onAction = EventHandler<ActionEvent> {
+
+        }
+        val histogramEqualization = Button("3 - Equalização de histograma")
+        histogramEqualization.onAction = EventHandler<ActionEvent> {
+
+        }
+        return Triple(meanAndMedian, borderDetection, histogramEqualization)
+    }
+
+    override fun enterState(stage: Stage) {
+        start(stage)
+    }
+
+    override fun leaveState() {
+
+    }
+
     companion object {
-        @JvmStatic fun main(args: Array<String>) {
+        fun launch() {
             launch(MainMenuState::class.java)
         }
     }
