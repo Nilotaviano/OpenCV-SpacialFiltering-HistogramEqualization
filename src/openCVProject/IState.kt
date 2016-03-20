@@ -1,3 +1,5 @@
+package openCVProject
+
 import javafx.stage.Stage
 
 /**

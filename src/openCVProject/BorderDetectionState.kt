@@ -1,16 +1,20 @@
+package openCVProject
+
 import javafx.application.Application
-import javafx.collections.FXCollections
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.geometry.Insets
 import javafx.geometry.Pos
-import javafx.scene.control.ComboBox
+import javafx.scene.control.Button
 import javafx.scene.layout.GridPane
+import javafx.scene.layout.HBox
 import javafx.scene.text.Text
 import javafx.stage.Stage
 
 /**
  * Created by nilot on 20/03/2016.
  */
-class MeanAndMedianMenuState : Application(), IState {
+class BorderDetectionState : Application(), IState {
     override fun start(stage: Stage) {
         stage.title = "OpenCV - Média e mediana"
 
@@ -28,14 +32,32 @@ class MeanAndMedianMenuState : Application(), IState {
                 }
         grid.children.clear()
 
-        val cbWindowSize = ComboBox(FXCollections.observableArrayList("3x3", "5x5"))
-        cbWindowSize.value = cbWindowSize.items.first()
-        grid.add(cbWindowSize, 0, 0, 2, 1)
+        val (btnRoberts, btnSobel, btnCanny) = setupButtons(stage)
+        val hbBtn = HBox(10.0)
+        hbBtn.alignment = Pos.BOTTOM_RIGHT
+        hbBtn.children.addAll(btnRoberts, btnSobel, btnCanny)
+        grid.add(hbBtn, 0, 3)
 
         val actionTarget = Text()
         grid.add(actionTarget, 1, 4)
 
         stage.show()
+    }
+
+    private fun setupButtons(stage: Stage): Triple<Button, Button, Button> {
+        val btnRoberts = Button("1 - Gradiente de Roberts")
+        btnRoberts.onAction = EventHandler<ActionEvent> {
+
+        }
+        val btnSobel = Button("2 - Gradiente de Sobel")
+        btnSobel.onAction = EventHandler<ActionEvent> {
+
+        }
+        val btnCanny = Button("3 - Gradiente de Canny")
+        btnCanny.onAction = EventHandler<ActionEvent> {
+
+        }
+        return Triple(btnRoberts, btnSobel, btnCanny)
     }
 
     override fun enterState(stage: Stage) {

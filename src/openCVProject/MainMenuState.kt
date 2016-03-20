@@ -1,3 +1,5 @@
+package openCVProject
+
 import javafx.application.Application
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
@@ -10,9 +12,11 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
+import javafx.scene.paint.Color
 import javafx.scene.text.Text
 import javafx.stage.FileChooser
 import javafx.stage.Stage
+import openCVProject.Histogram.FHistogramEqualization
 
 class MainMenuState : Application(), IState {
 
@@ -46,40 +50,49 @@ class MainMenuState : Application(), IState {
                 imageView.isPreserveRatio = true
             }
         }
+        val actionTarget = Text()
 
         val hbFileSelection = HBox(10.0)
         hbFileSelection.children.add(fileSelection)
         hbFileSelection.children.add(fileSelectionButton)
         grid.add(hbFileSelection, 0, 2)
 
-        val (meanAndMedian, borderDetection, histogramEqualization) = setupButtons(stage)
+        val (meanAndMedian, borderDetection, histogramEqualization) = setupButtons(stage, actionTarget)
 
         val hbBtn = HBox(10.0)
         hbBtn.alignment = Pos.BOTTOM_RIGHT
         hbBtn.children.addAll(meanAndMedian, borderDetection, histogramEqualization)
         grid.add(hbBtn, 0, 3)
 
-        val actionTarget = Text()
-        grid.add(actionTarget, 1, 4)
+        grid.add(actionTarget, 0, 4)
 
         stage.isMaximized = true
         stage.show()
     }
 
-    private fun setupButtons(stage: Stage): Triple<Button, Button, Button> {
-        val meanAndMedian = Button("1 - Média e mediana")
-        meanAndMedian.onAction = EventHandler<ActionEvent> {
-            StateManager.changeState(MeanAndMedianMenuState(), stage)
-        }
-        val borderDetection = Button("2 - Detecção de bordas")
-        borderDetection.onAction = EventHandler<ActionEvent> {
+    private fun setupButtons(stage: Stage, actionTarget: Text): Triple<Button, Button, Button> {
+        val meanAndMedian = setupButton(actionTarget, stage, "1 - Média e mediana", MeanAndMedianMenuState())
+        val borderDetection = setupButton(actionTarget, stage, "2 - Detecção de bordas", BorderDetectionState())
+        val histogramEqualization = setupButton(actionTarget, stage, "3 - Equalização de histograma", FHistogramEqualization())
 
-        }
-        val histogramEqualization = Button("3 - Equalização de histograma")
-        histogramEqualization.onAction = EventHandler<ActionEvent> {
-
-        }
         return Triple(meanAndMedian, borderDetection, histogramEqualization)
+    }
+
+    private fun setupButton(actionTarget: Text, stage: Stage, buttonText: String, state: IState): Button {
+        val button = Button(buttonText)
+        button.onAction = EventHandler<ActionEvent> {
+            if (Context.image != null) {
+                StateManager.changeState(state, stage)
+            } else {
+                printErrorMsg(actionTarget, "Uma imagem deve ter sido selecionada")
+            }
+        }
+        return button
+    }
+
+    private fun printErrorMsg(actionTarget: Text, error: String) {
+        actionTarget.fill = Color.FIREBRICK
+        actionTarget.text = error
     }
 
     override fun enterState(stage: Stage) {
