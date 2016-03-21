@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
@@ -17,7 +15,7 @@
             <children>
                 <HBox prefHeight="610.0" prefWidth="956.0">
                     <children>
-                        <ImageView id="beforeImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
+                        <ImageView fx:id="beforeImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
                                    preserveRatio="true"/>
                         <ImageView id="afterImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
                                    preserveRatio="true"/>
