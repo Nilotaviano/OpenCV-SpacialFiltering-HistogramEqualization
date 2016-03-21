@@ -17,7 +17,7 @@
                     <children>
                         <ImageView fx:id="beforeImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
                                    preserveRatio="true"/>
-                        <ImageView id="afterImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
+                        <ImageView fx:id="afterImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
                                    preserveRatio="true"/>
                     </children>
                 </HBox>
