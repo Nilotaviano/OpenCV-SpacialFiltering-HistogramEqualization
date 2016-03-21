@@ -13,6 +13,8 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.text.Text
 import javafx.stage.Stage
+import openCVProject.MeanFilter.FMeanFilter
+import openCVProject.MedianFilter.FMedianFilter
 
 /**
  * Created by nilot on 20/03/2016.
@@ -44,11 +46,11 @@ class MeanAndMedianMenuState : Application(), IState {
 
         val btnMean = Button("Média")
         btnMean.onAction = EventHandler<ActionEvent> {
-
+            StateManager.changeState(FMeanFilter(), stage)
         }
         val btnMedian = Button("Mediana")
         btnMedian.onAction = EventHandler<ActionEvent> {
-
+            StateManager.changeState(FMedianFilter(), stage)
         }
 
         val hbox = HBox()

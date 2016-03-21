@@ -12,7 +12,7 @@ import openCVProject.IState
 class FMeanFilter : Application(), IState {
 
     override fun start(primaryStage: Stage) {
-        val root = FXMLLoader.load<Parent>(javaClass.getResource("MedianFilter.fxml"))
+        val root = FXMLLoader.load<Parent>(javaClass.getResource("MeanFilter.fxml"))
         primaryStage.title = "OpenCV - Filtro de média"
         primaryStage.scene.root = root
         primaryStage.show()

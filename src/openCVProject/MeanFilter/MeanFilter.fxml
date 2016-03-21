@@ -1,4 +1,30 @@
-<?import javafx.scene.layout.GridPane?>
-<GridPane fx:controller="openCVProject.MeanFilter.MeanFilterController"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<GridPane alignment="center" hgap="10" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+          prefHeight="771.0" prefWidth="955.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1"
+          xmlns="http://javafx.com/javafx/8" fx:controller="openCVProject.MeanFilter.MeanFilterController">
+    <columnConstraints>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+    </rowConstraints>
+    <children>
+        <VBox prefHeight="771.0" prefWidth="1056.0" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+            <children>
+                <HBox prefHeight="610.0" prefWidth="956.0">
+                    <children>
+                        <ImageView id="beforeImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
+                                   preserveRatio="true"/>
+                        <ImageView id="afterImg" fitHeight="610.0" fitWidth="478.0" pickOnBounds="true"
+                                   preserveRatio="true"/>
+                    </children>
+                </HBox>
+                <HBox prefHeight="258.0" prefWidth="955.0"/>
+            </children>
+        </VBox>
+    </children>
 </GridPane>
