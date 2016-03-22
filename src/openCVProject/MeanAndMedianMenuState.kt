@@ -46,11 +46,12 @@ class MeanAndMedianMenuState : Application(), IState {
 
         val btnMean = Button("Média")
         btnMean.onAction = EventHandler<ActionEvent> {
-            Context.meanFilterSelectedOption = cbWindowSize.value
+            Context.meanAndMedianFilterSelectedOption = cbWindowSize.value
             StateManager.changeState(FMeanFilter(), stage)
         }
         val btnMedian = Button("Mediana")
         btnMedian.onAction = EventHandler<ActionEvent> {
+            Context.meanAndMedianFilterSelectedOption = cbWindowSize.value
             StateManager.changeState(FMedianFilter(), stage)
         }
 

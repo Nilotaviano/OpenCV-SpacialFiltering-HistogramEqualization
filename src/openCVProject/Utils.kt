@@ -35,4 +35,11 @@ object Utils {
         Imgcodecs.imencode(".png", mat, buffer)
         return Image(ByteArrayInputStream(buffer.toArray()))
     }
+
+    fun getCorrectedIndex(index: Int, maxIndex: Int) =
+            when {
+                index < 0 -> 1
+                index > maxIndex -> maxIndex
+                else -> index
+            }
 }

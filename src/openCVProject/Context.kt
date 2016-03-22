@@ -7,5 +7,5 @@ import javafx.scene.image.Image
  */
 object Context {
     var image: Image? = null
-    var meanFilterSelectedOption = ""
+    var meanAndMedianFilterSelectedOption = ""
 }
