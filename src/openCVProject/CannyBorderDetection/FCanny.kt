@@ -1,4 +1,4 @@
-package openCVProject.MedianFilter
+package openCVProject.CannyBorderDetection
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
@@ -6,14 +6,11 @@ import javafx.scene.Parent
 import javafx.stage.Stage
 import openCVProject.IState
 
-/**
- * Created by nilot on 21/03/2016.
- */
-class FMedianFilter : Application(), IState {
+class FCanny : Application(), IState {
 
     override fun start(primaryStage: Stage) {
-        val root = FXMLLoader.load<Parent>(javaClass.getResource("MedianFilter.fxml"))
-        primaryStage.title = "OpenCV - Filtro de mediana"
+        val root = FXMLLoader.load<Parent>(javaClass.getResource("Canny.fxml"))
+        primaryStage.title = "OpenCV - Canny"
         primaryStage.scene.root = root
         primaryStage.show()
     }

@@ -3,6 +3,7 @@ package openCVProject.MeanFilter
 import javafx.fxml.FXML
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
+import javafx.scene.layout.VBox
 import openCVProject.Context
 import openCVProject.Utils
 import org.opencv.core.Mat
@@ -13,10 +14,14 @@ import org.opencv.core.Mat
 class MeanFilterController {
     @FXML var beforeImg: ImageView? = null
     @FXML var afterImg: ImageView? = null
+    @FXML var beforeImgBox: VBox? = null
+    @FXML var afterImgBox: VBox? = null
 
     fun initialize() {
         beforeImg?.image = Context.image
+        beforeImg!!.fitWidthProperty().bind(beforeImgBox?.widthProperty())
         afterImg?.image = applyMeanFilter(Context.image!!)
+        afterImg!!.fitWidthProperty().bind(afterImgBox?.widthProperty())
     }
 
     private fun applyMeanFilter(image: Image): Image {

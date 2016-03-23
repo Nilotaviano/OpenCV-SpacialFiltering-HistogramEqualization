@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.text.Text
 import javafx.stage.Stage
+import openCVProject.CannyBorderDetection.FCanny
 
 /**
  * Created by nilot on 20/03/2016.
@@ -55,7 +56,7 @@ class BorderDetectionState : Application(), IState {
         }
         val btnCanny = Button("3 - Gradiente de Canny")
         btnCanny.onAction = EventHandler<ActionEvent> {
-
+            StateManager.changeState(FCanny(), stage)
         }
         return Triple(btnRoberts, btnSobel, btnCanny)
     }
