@@ -72,4 +72,8 @@ class MeanAndMedianMenuState : Application(), IState {
     override fun leaveState() {
 
     }
+
+    fun returnToPreviousState() {
+        StateManager.changeState(MainMenuState(), Context.stage!!)
+    }
 }

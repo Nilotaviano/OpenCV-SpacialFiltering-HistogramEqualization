@@ -21,6 +21,7 @@ import openCVProject.Histogram.FHistogramEqualization
 class MainMenuState : Application(), IState {
 
     override fun start(stage: Stage) {
+        Context.stage = stage
         stage.title = "OpenCV - Projeto"
         stage.isMaximized = true
         val grid = GridPane()

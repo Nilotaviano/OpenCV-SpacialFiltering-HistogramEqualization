@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
@@ -11,6 +14,14 @@
         <RowConstraints/>
     </rowConstraints>
     <VBox>
+        <HBox alignment="CENTER">
+            <VBox.margin>
+                <Insets/>
+            </VBox.margin>
+            <Button minHeight="25.0" minWidth="48.0" mnemonicParsing="false"
+                    onAction="#returnToPreviousState" prefHeight="25.0" prefWidth="48.0" text="Voltar"
+                    HBox.hgrow="NEVER"/>
+        </HBox>
         <HBox>
             <VBox fx:id="beforeImgBox">
                 <ImageView fx:id="beforeImg" pickOnBounds="true" preserveRatio="true"/>

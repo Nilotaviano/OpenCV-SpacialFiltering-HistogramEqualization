@@ -68,4 +68,8 @@ class BorderDetectionState : Application(), IState {
     override fun leaveState() {
 
     }
+
+    fun returnToPreviousState() {
+        StateManager.changeState(MainMenuState(), Context.stage!!)
+    }
 }

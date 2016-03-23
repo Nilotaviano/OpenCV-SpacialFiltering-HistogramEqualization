@@ -5,6 +5,8 @@ import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.VBox
 import openCVProject.Context
+import openCVProject.MeanAndMedianMenuState
+import openCVProject.StateManager
 import openCVProject.Utils
 import org.opencv.core.Mat
 
@@ -109,5 +111,9 @@ class MedianFilterController {
             }
         }
         return Utils.mat2Image(matResult)
+    }
+
+    fun returnToPreviousState() {
+        StateManager.changeState(MeanAndMedianMenuState(), Context.stage!!)
     }
 }

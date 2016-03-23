@@ -4,7 +4,9 @@ import javafx.fxml.FXML
 import javafx.scene.control.CheckBox
 import javafx.scene.control.Slider
 import javafx.scene.image.ImageView
+import openCVProject.BorderDetectionState
 import openCVProject.Context
+import openCVProject.StateManager
 
 /**
  * Created by nilot on 20/03/2016.
@@ -20,5 +22,9 @@ class CannyController {
     }
 
     fun detectBordersSelectionChanged() {
+    }
+
+    fun returnToPreviousState() {
+        StateManager.changeState(BorderDetectionState(), Context.stage!!)
     }
 }
