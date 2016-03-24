@@ -2,7 +2,6 @@ package openCVProject
 
 import javafx.scene.image.Image
 import javafx.scene.image.WritablePixelFormat
-import org.opencv.core.Core
 import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.core.MatOfByte
@@ -15,7 +14,6 @@ import java.io.ByteArrayInputStream
 object Utils {
     // http://stackoverflow.com/a/34784966
     fun imageToMat(image: Image): Mat {
-        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         val width = image.width.toInt()
         val height = image.height.toInt()
         val buffer = ByteArray(width * height * 4)
