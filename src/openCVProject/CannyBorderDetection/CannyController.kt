@@ -25,7 +25,6 @@ class CannyController {
 
     fun initialize() {
         imageView?.image = Context.image
-        imageView?.fitHeight = 800.0
 
         grayScale = Mat()
         edges = Mat()

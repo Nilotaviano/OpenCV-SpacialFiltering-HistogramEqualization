@@ -6,6 +6,7 @@ import org.opencv.core.CvType
 import org.opencv.core.Mat
 import org.opencv.core.MatOfByte
 import org.opencv.imgcodecs.Imgcodecs
+import org.opencv.imgproc.Imgproc
 import java.io.ByteArrayInputStream
 
 /**
@@ -32,6 +33,19 @@ object Utils {
         val buffer = MatOfByte()
         Imgcodecs.imencode(".png", mat, buffer)
         return Image(ByteArrayInputStream(buffer.toArray()))
+    }
+
+    fun convertToGrayScale(mat: Mat): Mat {
+        var gray: Mat = Mat()
+        if (mat.channels() == 3) {
+            Imgproc.cvtColor(mat, gray, Imgproc.COLOR_BGR2GRAY)
+        } else if (mat.channels() == 4) {
+            Imgproc.cvtColor(mat, gray, Imgproc.COLOR_BGRA2GRAY)
+        } else {
+            gray = mat
+        }
+
+        return gray
     }
 
     fun getCorrectedIndex(index: Int, maxIndex: Int) =
