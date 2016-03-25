@@ -1,31 +1,31 @@
 package openCVProject.Histogram
 
 import javafx.fxml.FXML
+import javafx.scene.control.ScrollPane
 import javafx.scene.image.ImageView
-import openCVProject.Context
-import openCVProject.MainMenuState
-import openCVProject.StateManager
-import openCVProject.Utils
+import openCVProject.*
 import org.opencv.core.*
 import org.opencv.imgproc.Imgproc
 import java.util.*
 
-/**
- * Created by nilot on 20/03/2016.
- */
 class HistogramEqualizationController {
     @FXML var histogramBefore: ImageView? = null
-    @FXML var imageBefore: ImageView? = null
+    @FXML var beforeImage: ImageView? = null
     @FXML var histogramAfter: ImageView? = null
-    @FXML var imageAfter: ImageView? = null
+    @FXML var afterImage: ImageView? = null
+    @FXML var beforeImgScroll: ScrollPane? = null
+    @FXML var afterImgScroll: ScrollPane? = null
 
     fun initialize() {
-        val mat = Utils.convertToGrayScale(Utils.imageToMat(Context.image!!))
+        val mat = ImageUtils.convertToGrayScale(ImageUtils.imageToMat(Context.image!!))
         val equalizedMat = equalizeHistogram(mat)
-        histogramBefore?.image = Utils.mat2Image(calculateHistogram(mat))
-        imageBefore?.image = Utils.mat2Image(mat)
-        histogramAfter?.image = Utils.mat2Image(calculateHistogram(equalizedMat))
-        imageAfter?.image = Utils.mat2Image(equalizedMat)
+        histogramBefore?.image = ImageUtils.mat2Image(calculateHistogram(mat))
+        beforeImage?.image = ImageUtils.mat2Image(mat)
+        histogramAfter?.image = ImageUtils.mat2Image(calculateHistogram(equalizedMat))
+        afterImage?.image = ImageUtils.mat2Image(equalizedMat)
+
+        UIUtils.setZoomScroll(beforeImage!!, beforeImgScroll!!)
+        UIUtils.setZoomScroll(afterImage!!, afterImgScroll!!)
     }
 
     private fun calculateHistogram(imageMat: Mat): Mat {

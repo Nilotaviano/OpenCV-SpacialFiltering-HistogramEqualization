@@ -3,9 +3,6 @@ package openCVProject
 import javafx.stage.Stage
 import org.opencv.core.Core
 
-/**
- * Created by nilot on 20/03/2016.
- */
 object StateManager {
     private var state: IState? = null
 

@@ -11,33 +11,31 @@ import javafx.scene.layout.HBox
 import javafx.scene.text.Text
 import javafx.stage.Stage
 import openCVProject.CannyBorderDetection.FCanny
+import openCVProject.RobertsBorderDetection.FRoberts
+import openCVProject.SobelBorderDetection.FSobel
 
-/**
- * Created by nilot on 20/03/2016.
- */
 class BorderDetectionState : Application(), IState {
     override fun start(stage: Stage) {
         stage.title = "OpenCV - Média e mediana"
 
-        val grid =
-                if (stage.scene.root is GridPane) {
-                    stage.scene.root as GridPane
-                } else {
-                    val grid = GridPane()
-                    grid.alignment = Pos.CENTER
-                    grid.hgap = 10.0
-                    grid.vgap = 10.0
-                    grid.padding = Insets(25.0, 25.0, 25.0, 25.0)
-                    stage.scene.root = grid
-                    grid
-                }
-        grid.children.clear()
+        val grid = GridPane()
+        grid.alignment = Pos.CENTER
+        grid.hgap = 10.0
+        grid.vgap = 10.0
+        grid.padding = Insets(25.0, 25.0, 25.0, 25.0)
+        stage.scene.root = grid
 
         val (btnRoberts, btnSobel, btnCanny) = setupButtons(stage)
         val hbBtn = HBox(10.0)
         hbBtn.alignment = Pos.BOTTOM_RIGHT
         hbBtn.children.addAll(btnRoberts, btnSobel, btnCanny)
-        grid.add(hbBtn, 0, 3)
+        grid.add(hbBtn, 0, 0)
+
+        val btnGoBack = Button("Voltar")
+        btnGoBack.onAction = EventHandler<ActionEvent> {
+            returnToPreviousState()
+        }
+        grid.add(btnGoBack, 0, 1)
 
         val actionTarget = Text()
         grid.add(actionTarget, 1, 4)
@@ -48,11 +46,11 @@ class BorderDetectionState : Application(), IState {
     private fun setupButtons(stage: Stage): Triple<Button, Button, Button> {
         val btnRoberts = Button("1 - Gradiente de Roberts")
         btnRoberts.onAction = EventHandler<ActionEvent> {
-
+            StateManager.changeState(FRoberts(), stage)
         }
         val btnSobel = Button("2 - Gradiente de Sobel")
         btnSobel.onAction = EventHandler<ActionEvent> {
-
+            StateManager.changeState(FSobel(), stage)
         }
         val btnCanny = Button("3 - Gradiente de Canny")
         btnCanny.onAction = EventHandler<ActionEvent> {

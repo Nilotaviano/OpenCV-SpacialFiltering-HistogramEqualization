@@ -9,10 +9,7 @@ import org.opencv.imgcodecs.Imgcodecs
 import org.opencv.imgproc.Imgproc
 import java.io.ByteArrayInputStream
 
-/**
- * Created by nilot on 21/03/2016.
- */
-object Utils {
+object ImageUtils {
     // http://stackoverflow.com/a/34784966
     fun imageToMat(image: Image): Mat {
         val width = image.width.toInt()

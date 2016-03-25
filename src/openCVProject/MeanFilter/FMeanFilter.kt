@@ -6,9 +6,6 @@ import javafx.scene.Parent
 import javafx.stage.Stage
 import openCVProject.IState
 
-/**
- * Created by nilot on 21/03/2016.
- */
 class FMeanFilter : Application(), IState {
 
     override fun start(primaryStage: Stage) {

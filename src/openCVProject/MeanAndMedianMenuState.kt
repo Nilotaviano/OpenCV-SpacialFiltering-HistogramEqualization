@@ -16,26 +16,16 @@ import javafx.stage.Stage
 import openCVProject.MeanFilter.FMeanFilter
 import openCVProject.MedianFilter.FMedianFilter
 
-/**
- * Created by nilot on 20/03/2016.
- */
 class MeanAndMedianMenuState : Application(), IState {
     override fun start(stage: Stage) {
         stage.title = "OpenCV - Média e mediana"
 
-        val grid =
-                if (stage.scene.root is GridPane) {
-                    stage.scene.root as GridPane
-                } else {
-                    val grid = GridPane()
-                    grid.alignment = Pos.CENTER
-                    grid.hgap = 10.0
-                    grid.vgap = 10.0
-                    grid.padding = Insets(25.0, 25.0, 25.0, 25.0)
-                    stage.scene.root = grid
-                    grid
-                }
-        grid.children.clear()
+        val grid = GridPane()
+        grid.alignment = Pos.CENTER
+        grid.hgap = 10.0
+        grid.vgap = 10.0
+        grid.padding = Insets(25.0, 25.0, 25.0, 25.0)
+        stage.scene.root = grid
 
         val lblWindowSize = Label("Tamanho da janela:")
         grid.add(lblWindowSize, 0, 0)
@@ -56,11 +46,17 @@ class MeanAndMedianMenuState : Application(), IState {
         }
 
         val hbox = HBox()
-        hbox.alignment = Pos.BOTTOM_RIGHT
+        hbox.alignment = Pos.BOTTOM_LEFT
         hbox.children.addAll(btnMean, btnMedian)
         grid.add(hbox, 0, 1, 2, 1)
         val actionTarget = Text()
         grid.add(actionTarget, 1, 4)
+
+        val btnGoBack = Button("Voltar")
+        btnGoBack.onAction = EventHandler<ActionEvent> {
+            returnToPreviousState()
+        }
+        grid.add(btnGoBack, 0, 2, 2, 1)
 
         stage.show()
     }

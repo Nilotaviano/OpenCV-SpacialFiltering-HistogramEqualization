@@ -1,4 +1,4 @@
-package openCVProject.CannyBorderDetection
+package openCVProject.RobertsBorderDetection
 
 import javafx.fxml.FXML
 import javafx.scene.control.Button
@@ -10,7 +10,7 @@ import org.opencv.core.Mat
 import org.opencv.core.Size
 import org.opencv.imgproc.Imgproc
 
-class CannyController {
+class RobertsController {
     @FXML var imageView: ImageView? = null
     @FXML var btnDetectBorder: Button? = null
     @FXML var threshholdSlider: Slider? = null
@@ -55,6 +55,7 @@ class CannyController {
 
         return result
     }
+
     fun returnToPreviousState() {
         StateManager.changeState(BorderDetectionState(), Context.stage!!)
     }

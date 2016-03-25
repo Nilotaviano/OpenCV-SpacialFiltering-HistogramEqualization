@@ -17,12 +17,12 @@
     </rowConstraints>
     <Button minHeight="25.0" minWidth="48.0" mnemonicParsing="false" onAction="#returnToPreviousState" prefHeight="25.0"
             prefWidth="64.0" text="Voltar"/>
-    <ScrollPane GridPane.rowIndex="1">
-        <ImageView fx:id="imageBefore" preserveRatio="true" GridPane.rowIndex="1"/>
+    <ScrollPane GridPane.rowIndex="1" fx:id="beforeImgScroll">
+        <ImageView fx:id="beforeImage" preserveRatio="true" GridPane.rowIndex="1"/>
     </ScrollPane>
     <ImageView fx:id="histogramBefore" GridPane.rowIndex="2"/>
-    <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <ImageView fx:id="imageAfter" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+    <ScrollPane GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="afterImgScroll">
+        <ImageView fx:id="afterImage" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
     </ScrollPane>
     <ImageView fx:id="histogramAfter" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 </GridPane>

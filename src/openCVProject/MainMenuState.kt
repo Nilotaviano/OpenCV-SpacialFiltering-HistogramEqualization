@@ -39,10 +39,14 @@ class MainMenuState : Application(), IState {
         val actionTarget = Text()
 
         val imageView = ImageView()
+        imageView.image = Context.image // In case the user returns to this screen and has already selected an image
+        imageView.fitHeight = 300.0
+        imageView.isPreserveRatio = true
         grid.add(imageView, 0, 0)
 
         val fileChooser = FileChooser()
         fileChooser.title = "Selecione uma imagem"
+        fileChooser.extensionFilters.add(FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png", "*.jpeg", "*.bmp"))
 
         val fileSelection = Label("Selecionar arquivo: ")
         val fileSelectionButton = Button("...")
@@ -54,8 +58,6 @@ class MainMenuState : Application(), IState {
                 if (!image.isError) {
                     Context.image = image
                     imageView.image = Context.image
-                    imageView.fitHeight = 300.0
-                    imageView.isPreserveRatio = true
                 } else {
                     printErrorMsg(actionTarget, "Erro ao ler imagem")
                 }
