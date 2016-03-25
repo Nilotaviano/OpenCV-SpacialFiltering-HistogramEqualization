@@ -16,7 +16,7 @@
         <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER"
                    GridPane.valignment="CENTER" VBox.vgrow="SOMETIMES"/>
     </ScrollPane>
-    <HBox alignment="CENTER" minHeight="0" minWidth="0" spacing="10.0" GridPane.rowIndex="1" fx:id="hboxButtons">
+    <HBox alignment="CENTER" minHeight="0" minWidth="0" spacing="10.0" GridPane.rowIndex="1">
         <Button minHeight="25.0" minWidth="48.0" mnemonicParsing="false" onAction="#returnToPreviousState"
                 prefHeight="25.0" prefWidth="64.0" text="Voltar"/>
         <Button mnemonicParsing="false" onAction="#restoreImage"
