@@ -69,11 +69,11 @@ class MainMenuState : Application(), IState {
         hbFileSelection.children.add(fileSelectionButton)
         grid.add(hbFileSelection, 0, 2)
 
-        val (meanAndMedian, borderDetection, histogramEqualization) = setupButtons(stage, actionTarget)
+        val (meanAndMedian, edgeDetection, histogramEqualization) = setupButtons(stage, actionTarget)
 
         val hbBtn = HBox(10.0)
         hbBtn.alignment = Pos.BOTTOM_RIGHT
-        hbBtn.children.addAll(meanAndMedian, borderDetection, histogramEqualization)
+        hbBtn.children.addAll(meanAndMedian, edgeDetection, histogramEqualization)
         grid.add(hbBtn, 0, 3)
 
         grid.add(actionTarget, 0, 4)
@@ -84,10 +84,10 @@ class MainMenuState : Application(), IState {
 
     private fun setupButtons(stage: Stage, actionTarget: Text): Triple<Button, Button, Button> {
         val meanAndMedian = setupButton(actionTarget, stage, "1 - Média e mediana", MeanAndMedianMenuState())
-        val borderDetection = setupButton(actionTarget, stage, "2 - Detecção de bordas", BorderDetectionState())
+        val edgeDetection = setupButton(actionTarget, stage, "2 - Detecção de bordas", EdgeDetectionState())
         val histogramEqualization = setupButton(actionTarget, stage, "3 - Equalização de histograma", FHistogramEqualization())
 
-        return Triple(meanAndMedian, borderDetection, histogramEqualization)
+        return Triple(meanAndMedian, edgeDetection, histogramEqualization)
     }
 
     private fun setupButton(actionTarget: Text, stage: Stage, buttonText: String, state: IState): Button {

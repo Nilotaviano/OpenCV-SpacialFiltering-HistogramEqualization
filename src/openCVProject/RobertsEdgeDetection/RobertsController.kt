@@ -1,4 +1,4 @@
-package openCVProject.RobertsBorderDetection
+package openCVProject.RobertsEdgeDetection
 
 import javafx.fxml.FXML
 import javafx.scene.control.Button
@@ -12,7 +12,7 @@ import org.opencv.imgproc.Imgproc
 
 class RobertsController {
     @FXML var imageView: ImageView? = null
-    @FXML var btnDetectBorder: Button? = null
+    @FXML var btnDetectEdge: Button? = null
     @FXML var threshholdSlider: Slider? = null
     @FXML var imgScroll: ScrollPane? = null
 
@@ -30,7 +30,7 @@ class RobertsController {
         edges = Mat()
     }
 
-    fun detectBorders() {
+    fun detectEdges() {
         if (lastThreshholdValue != threshholdSlider?.value) {
             processedImage = ImageUtils.imageToMat(Context.image!!)
             processedImage = this.doCanny(processedImage!!)
@@ -57,6 +57,6 @@ class RobertsController {
     }
 
     fun returnToPreviousState() {
-        StateManager.changeState(BorderDetectionState(), Context.stage!!)
+        StateManager.changeState(EdgeDetectionState(), Context.stage!!)
     }
 }

@@ -1,4 +1,4 @@
-package openCVProject.SobelBorderDetection
+package openCVProject.SobelEdgeDetection
 
 import javafx.fxml.FXML
 import javafx.scene.control.Button
@@ -11,7 +11,7 @@ import org.opencv.imgproc.Imgproc
 
 class SobelController {
     @FXML var imageView: ImageView? = null
-    @FXML var btnDetectBorder: Button? = null
+    @FXML var btnDetectEdge: Button? = null
     @FXML var imgScroll: ScrollPane? = null
 
     private var grayScale: Mat? = null
@@ -27,28 +27,28 @@ class SobelController {
         grayScale = Mat()
     }
 
-    fun detectBorders() {
+    fun detectEdges() {
         if (edgesImage == null) {
-            edgesImage = doDetectBorders()
+            edgesImage = doDetectEdges()
         }
         imageView?.image = edgesImage
     }
 
-    fun detectHorizontalBorders() {
+    fun detectHorizontalEdges() {
         if (horizontalEdgesImage == null) {
-            horizontalEdgesImage = doDetectBorders(detectHorizontal = true, detectVertical = false)
+            horizontalEdgesImage = doDetectEdges(detectHorizontal = true, detectVertical = false)
         }
         imageView?.image = horizontalEdgesImage
     }
 
-    fun detectVerticalBorders() {
+    fun detectVerticalEdges() {
         if (verticalEdgesImage == null) {
-            verticalEdgesImage = doDetectBorders(detectHorizontal = false, detectVertical = true)
+            verticalEdgesImage = doDetectEdges(detectHorizontal = false, detectVertical = true)
         }
         imageView?.image = verticalEdgesImage
     }
 
-    private fun doDetectBorders(detectHorizontal: Boolean = true, detectVertical: Boolean = true): Image {
+    private fun doDetectEdges(detectHorizontal: Boolean = true, detectVertical: Boolean = true): Image {
         var processedImage = ImageUtils.imageToMat(Context.image!!)
         processedImage = this.doSobel(processedImage, detectHorizontal, detectVertical)
         return ImageUtils.mat2Image(processedImage)
@@ -103,6 +103,6 @@ class SobelController {
     }
 
     fun returnToPreviousState() {
-        StateManager.changeState(BorderDetectionState(), Context.stage!!)
+        StateManager.changeState(EdgeDetectionState(), Context.stage!!)
     }
 }

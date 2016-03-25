@@ -1,4 +1,4 @@
-package openCVProject.CannyBorderDetection
+package openCVProject.CannyEdgeDetection
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader

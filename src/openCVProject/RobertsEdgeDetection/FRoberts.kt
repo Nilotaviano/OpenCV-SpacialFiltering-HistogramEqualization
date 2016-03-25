@@ -1,4 +1,4 @@
-package openCVProject.RobertsBorderDetection
+package openCVProject.RobertsEdgeDetection
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader

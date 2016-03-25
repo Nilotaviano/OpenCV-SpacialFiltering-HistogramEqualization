@@ -1,4 +1,4 @@
-package openCVProject.SobelBorderDetection
+package openCVProject.SobelEdgeDetection
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader

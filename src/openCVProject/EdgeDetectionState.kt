@@ -10,11 +10,11 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.text.Text
 import javafx.stage.Stage
-import openCVProject.CannyBorderDetection.FCanny
-import openCVProject.RobertsBorderDetection.FRoberts
-import openCVProject.SobelBorderDetection.FSobel
+import openCVProject.CannyEdgeDetection.FCanny
+import openCVProject.RobertsEdgeDetection.FRoberts
+import openCVProject.SobelEdgeDetection.FSobel
 
-class BorderDetectionState : Application(), IState {
+class EdgeDetectionState : Application(), IState {
     override fun start(stage: Stage) {
         stage.title = "OpenCV - Média e mediana"
 

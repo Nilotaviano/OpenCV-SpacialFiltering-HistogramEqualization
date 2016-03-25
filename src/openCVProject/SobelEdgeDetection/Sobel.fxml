@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <GridPane alignment="CENTER" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-          fx:controller="openCVProject.RobertsBorderDetection.RobertsController">
+          fx:controller="openCVProject.SobelEdgeDetection.SobelController">
     <columnConstraints>
         <ColumnConstraints/>
     </columnConstraints>
@@ -16,14 +16,16 @@
         <ImageView fx:id="imageView" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER"
                    GridPane.valignment="CENTER" VBox.vgrow="SOMETIMES"/>
     </ScrollPane>
-    <HBox alignment="CENTER" minHeight="0" minWidth="0" spacing="10.0" GridPane.rowIndex="1">
+    <HBox alignment="CENTER" minHeight="0" minWidth="0" spacing="10.0" GridPane.rowIndex="1" fx:id="hboxButtons">
         <Button minHeight="25.0" minWidth="48.0" mnemonicParsing="false" onAction="#returnToPreviousState"
                 prefHeight="25.0" prefWidth="64.0" text="Voltar"/>
         <Button mnemonicParsing="false" onAction="#restoreImage"
                 text="Restaurar imagem"/>
-        <Button mnemonicParsing="false" onAction="#detectBorders"
+        <Button mnemonicParsing="false" onAction="#detectEdges"
                 text="Detectar bordas"/>
-        <Label text="Limiar"/>
-        <Slider fx:id="threshholdSlider"/>
+        <Button mnemonicParsing="false" onAction="#detectHorizontalEdges"
+                text="Detectar bordas apenas na horizontal"/>
+        <Button mnemonicParsing="false" onAction="#detectVerticalEdges"
+                text="Detectar bordas apenas na vertical"/>
     </HBox>
 </GridPane>
