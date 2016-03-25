@@ -94,7 +94,7 @@ class SobelController {
                     0.0
                 }
 
-                val pixel = (Math.sqrt((pixelX * pixelX) + (pixelY * pixelY)))
+                val pixel = Math.abs(pixelX) + Math.abs(pixelY)
                 edges.put(row, col, pixel)
             }
         }
