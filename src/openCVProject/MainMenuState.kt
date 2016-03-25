@@ -21,17 +21,22 @@ import openCVProject.Histogram.FHistogramEqualization
 class MainMenuState : Application(), IState {
 
     override fun start(stage: Stage) {
-        Context.stage = stage
-        stage.title = "OpenCV - Projeto"
-        stage.isMaximized = true
         val grid = GridPane()
         grid.alignment = Pos.CENTER
         grid.hgap = 10.0
         grid.vgap = 10.0
         grid.padding = Insets(25.0, 25.0, 25.0, 25.0)
 
-        val scene = Scene(grid)
-        stage.scene = scene
+        if (Context.stage == null) {
+            Context.stage = stage
+            stage.title = "OpenCV - Projeto"
+            stage.isMaximized = true
+            val scene = Scene(grid)
+            stage.scene = scene
+        } else {
+            stage.scene.root = grid
+        }
+        val actionTarget = Text()
 
         val imageView = ImageView()
         grid.add(imageView, 0, 0)
@@ -45,13 +50,17 @@ class MainMenuState : Application(), IState {
             val file = fileChooser.showOpenDialog(stage)
 
             if (file != null) {
-                Context.image = Image(file.inputStream())
-                imageView.image = Context.image
-                imageView.fitHeight = 300.0
-                imageView.isPreserveRatio = true
+                val image = Image(file.inputStream())
+                if (!image.isError) {
+                    Context.image = image
+                    imageView.image = Context.image
+                    imageView.fitHeight = 300.0
+                    imageView.isPreserveRatio = true
+                } else {
+                    printErrorMsg(actionTarget, "Erro ao ler imagem")
+                }
             }
         }
-        val actionTarget = Text()
 
         val hbFileSelection = HBox(10.0)
         hbFileSelection.children.add(fileSelection)
