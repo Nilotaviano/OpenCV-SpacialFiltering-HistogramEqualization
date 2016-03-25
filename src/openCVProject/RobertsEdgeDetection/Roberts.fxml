@@ -23,7 +23,9 @@
                 text="Restaurar imagem"/>
         <Button mnemonicParsing="false" onAction="#detectEdges"
                 text="Detectar bordas"/>
-        <Label text="Limiar"/>
-        <Slider fx:id="threshholdSlider"/>
+        <Button mnemonicParsing="false" onAction="#detectHorizontalEdges"
+                text="Detectar bordas apenas na horizontal"/>
+        <Button mnemonicParsing="false" onAction="#detectVerticalEdges"
+                text="Detectar bordas apenas na vertical"/>
     </HBox>
 </GridPane>
