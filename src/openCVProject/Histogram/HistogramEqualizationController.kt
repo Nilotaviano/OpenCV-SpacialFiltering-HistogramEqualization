@@ -40,7 +40,7 @@ class HistogramEqualizationController {
 
         Imgproc.calcHist(images.subList(0, 1), channels, Mat(), b, histSize, histRange, false)
 
-        val width = 400
+        val width = 800
         val height = 400
         val bin_w = Math.round(width / histSize.get(0, 0)[0]).toInt()
 
@@ -50,7 +50,7 @@ class HistogramEqualizationController {
         var i = 1
         while (i < histSize.get(0, 0)[0]) {
             Imgproc.line(histogramMat, Point((bin_w * (i - 1)).toDouble(), (height - Math.round(b.get(i - 1, 0)[0])).toDouble()),
-                    Point((bin_w * i).toDouble(), (height - Math.round(b.get(i, 0)[0])).toDouble()), Scalar(255.0, 0.0, 0.0), 2, 8, 0)
+                    Point((bin_w * i).toDouble(), (height - Math.round(b.get(i, 0)[0])).toDouble()), Scalar(255.0, 0.0, 0.0), 1, 8, 0)
             i++
         }
 
