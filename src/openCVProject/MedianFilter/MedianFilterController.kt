@@ -44,10 +44,10 @@ class MedianFilterController {
                     }
                 }
 
-                var r = pixelsChannels.map { c -> c[0] }
-                var g = pixelsChannels.map { c -> c[1] }
-                var b = pixelsChannels.map { c -> c[2] }
-                var a = pixelsChannels.map { c -> c[3] }
+                var r = pixelsChannels.map { c -> c[0] }.sorted()
+                var g = pixelsChannels.map { c -> c[1] }.sorted()
+                var b = pixelsChannels.map { c -> c[2] }.sorted()
+                var a = pixelsChannels.map { c -> c[3] }.sorted()
 
                 matResult.put(row, col,
                         r[Math.ceil(r.size.toDouble() / 2).toInt()], g[Math.ceil(g.size.toDouble() / 2).toInt()],

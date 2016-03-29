@@ -57,10 +57,44 @@ class HistogramEqualizationController {
         return histogramMat
     }
 
+    // This is ugly as f, do not look
     private fun equalizeHistogram(imageMat: Mat): Mat {
-        var equalizedMat = Mat()
-        Imgproc.equalizeHist(imageMat, equalizedMat)
+        var equalizedMat = Mat(imageMat.rows(), imageMat.cols(), imageMat.type())
 
+        //map pixel intensity to occurrence
+        val intensityOccurrence = TreeMap<Double, Int>()
+        var numberOfPixels = 0.0
+
+        for (row in 0..imageMat.rows() - 1) {
+            for (col in 0..imageMat.cols() - 1) {
+
+                intensityOccurrence[imageMat.get(row, col).first()] =
+                        if (intensityOccurrence[imageMat.get(row, col).first()] == null) {
+                            1
+                        } else {
+                            intensityOccurrence[imageMat.get(row, col).first()]!! + 1
+                        }
+
+                numberOfPixels++
+            }
+        }
+
+        val maxPossibleValue = 255   //It's already sorted
+        val pn = intensityOccurrence.map { kv -> Pair(kv.key, kv.value / numberOfPixels) }
+        val sn = TreeMap<Double, Double>()
+
+        sn[pn.first().first] = pn.first().second
+
+        for (i in 1..pn.size - 1) {
+            sn[pn[i].first] = pn[i].second + sn[pn[i - 1].first]!!
+        }
+
+        for (row in 0..imageMat.rows() - 1) {
+            for (col in 0..imageMat.cols() - 1) {
+                equalizedMat.put(row, col,
+                        *doubleArrayOf(((sn[imageMat.get(row, col).first()]!! * maxPossibleValue) + 0.5).toInt().toDouble()))
+            }
+        }
         return equalizedMat
     }
 

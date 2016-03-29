@@ -21,6 +21,8 @@ object UIUtils {
             } else if (event.deltaY < 0) {
                 zoomProperty.set(zoomProperty.get() / 1.1)
             }
+
+            event.consume()
         })
     }
 }
