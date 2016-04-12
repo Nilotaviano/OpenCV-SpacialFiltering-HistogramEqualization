@@ -17,13 +17,14 @@ class HistogramEqualizationController {
     @FXML var afterImgScroll: ScrollPane? = null
 
     fun initialize() {
-        val mat = ImageUtils.convertToGrayScale(ImageUtils.imageToMat(Context.image!!))
+        val mat = ImageUtils.convertToGrayScale(ImageUtils.imageToMat(Context.images.last()))
         val equalizedMat = equalizeHistogram(mat)
         histogramBefore?.image = ImageUtils.mat2Image(calculateHistogram(mat))
         beforeImage?.image = ImageUtils.mat2Image(mat)
         histogramAfter?.image = ImageUtils.mat2Image(calculateHistogram(equalizedMat))
-        afterImage?.image = ImageUtils.mat2Image(equalizedMat)
-
+        var processedImage = ImageUtils.mat2Image(equalizedMat)
+        afterImage?.image = processedImage
+        Context.images.add(processedImage)
         UIUtils.setZoomScroll(beforeImage!!, beforeImgScroll!!)
         UIUtils.setZoomScroll(afterImage!!, afterImgScroll!!)
     }
@@ -40,8 +41,8 @@ class HistogramEqualizationController {
 
         Imgproc.calcHist(images.subList(0, 1), channels, Mat(), b, histSize, histRange, false)
 
-        val width = 800
-        val height = 400
+        val width = 600
+        val height = 300
         val bin_w = Math.round(width / histSize.get(0, 0)[0]).toInt()
 
         val histogramMat = Mat(height, width, CvType.CV_8UC3, Scalar(0.0, 0.0, 0.0))

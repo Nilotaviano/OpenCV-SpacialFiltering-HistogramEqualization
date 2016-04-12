@@ -15,9 +15,10 @@ class MeanFilterController {
     @FXML var afterImgScroll: ScrollPane? = null
 
     fun initialize() {
-        beforeImg?.image = Context.image
-        afterImg?.image = applyMeanFilter(Context.image!!)
-
+        beforeImg?.image = Context.images.last()
+        var processedImage = applyMeanFilter(Context.images.first())
+        afterImg?.image = processedImage
+        Context.images.add(processedImage)
         UIUtils.setZoomScroll(beforeImg!!, beforeImgScroll!!)
         UIUtils.setZoomScroll(afterImg!!, afterImgScroll!!)
     }

@@ -21,7 +21,7 @@ class RobertsController {
     var verticalEdgesImage: Image? = null
 
     fun initialize() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
         UIUtils.setZoomScroll(imageView!!, imgScroll!!)
 
         grayScale = Mat()
@@ -49,13 +49,13 @@ class RobertsController {
     }
 
     private fun doDetectEdges(detectHorizontal: Boolean = true, detectVertical: Boolean = true): Image {
-        var processedImage = ImageUtils.imageToMat(Context.image!!)
+        var processedImage = ImageUtils.imageToMat(Context.images.first())
         processedImage = this.doRoberts(processedImage, detectHorizontal, detectVertical)
         return ImageUtils.mat2Image(processedImage)
     }
 
     fun restoreImage() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
     }
 
     private fun doRoberts(frame: Mat, detectHorizontal: Boolean, detectVertical: Boolean): Mat {

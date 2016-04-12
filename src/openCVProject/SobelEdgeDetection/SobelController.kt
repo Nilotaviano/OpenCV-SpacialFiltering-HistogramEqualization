@@ -21,7 +21,7 @@ class SobelController {
     var verticalEdgesImage: Image? = null
 
     fun initialize() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
         UIUtils.setZoomScroll(imageView!!, imgScroll!!)
 
         grayScale = Mat()
@@ -49,13 +49,13 @@ class SobelController {
     }
 
     private fun doDetectEdges(detectHorizontal: Boolean = true, detectVertical: Boolean = true): Image {
-        var processedImage = ImageUtils.imageToMat(Context.image!!)
+        var processedImage = ImageUtils.imageToMat(Context.images.first())
         processedImage = this.doSobel(processedImage, detectHorizontal, detectVertical)
         return ImageUtils.mat2Image(processedImage)
     }
 
     fun restoreImage() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
     }
 
     private fun doSobel(frame: Mat, detectHorizontal: Boolean, detectVertical: Boolean): Mat {

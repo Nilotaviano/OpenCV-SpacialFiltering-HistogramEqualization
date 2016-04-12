@@ -15,8 +15,11 @@ class MedianFilterController {
     @FXML var afterImgScroll: ScrollPane? = null
 
     fun initialize() {
-        beforeImg?.image = Context.image
-        afterImg?.image = applyMedianFilter(Context.image!!)
+        beforeImg?.image = Context.images.last()
+        var processedImage = applyMedianFilter(Context.images.first())
+        afterImg?.image = processedImage
+
+        Context.images.add(processedImage)
 
         UIUtils.setZoomScroll(beforeImg!!, beforeImgScroll!!)
         UIUtils.setZoomScroll(afterImg!!, afterImgScroll!!)

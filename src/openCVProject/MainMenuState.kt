@@ -39,7 +39,7 @@ class MainMenuState : Application(), IState {
         val actionTarget = Text()
 
         val imageView = ImageView()
-        imageView.image = Context.image // In case the user returns to this screen and has already selected an image
+        imageView.image = Context.images.lastOrNull() // In case the user returns to this screen and has already selected an image
         imageView.fitHeight = 300.0
         imageView.isPreserveRatio = true
         grid.add(imageView, 0, 0)
@@ -56,8 +56,9 @@ class MainMenuState : Application(), IState {
             if (file != null) {
                 val image = Image(file.inputStream())
                 if (!image.isError) {
-                    Context.image = image
-                    imageView.image = Context.image
+                    Context.images.clear()
+                    Context.images.add(image)
+                    imageView.image = Context.images.last()
                 } else {
                     printErrorMsg(actionTarget, "Erro ao ler imagem")
                 }
@@ -76,7 +77,16 @@ class MainMenuState : Application(), IState {
         hbBtn.children.addAll(meanAndMedian, edgeDetection, histogramEqualization)
         grid.add(hbBtn, 0, 3)
 
-        grid.add(actionTarget, 0, 4)
+        val undoButton = Button("Desfazer ultima alteração")
+        undoButton.onAction = EventHandler<ActionEvent> {
+            if(Context.images.size > 1) {
+                Context.images.removeAt(Context.images.size - 1)
+                imageView.image = Context.images.last()
+            }
+        }
+        grid.add(undoButton, 0, 4)
+
+        grid.add(actionTarget, 0, 5)
 
         stage.isMaximized = true
         stage.show()
@@ -93,7 +103,7 @@ class MainMenuState : Application(), IState {
     private fun setupButton(actionTarget: Text, stage: Stage, buttonText: String, state: IState): Button {
         val button = Button(buttonText)
         button.onAction = EventHandler<ActionEvent> {
-            if (Context.image != null) {
+            if (Context.images.lastOrNull() != null) {
                 StateManager.changeState(state, stage)
             } else {
                 printErrorMsg(actionTarget, "Uma imagem deve ter sido selecionada")
@@ -109,6 +119,7 @@ class MainMenuState : Application(), IState {
 
     override fun enterState(stage: Stage) {
         start(stage)
+
     }
 
     override fun leaveState() {

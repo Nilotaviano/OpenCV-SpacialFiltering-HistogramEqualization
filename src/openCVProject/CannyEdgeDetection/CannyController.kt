@@ -23,7 +23,7 @@ class CannyController {
     private var lastThreshholdValue: Double = -1.0
 
     fun initialize() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
         UIUtils.setZoomScroll(imageView!!, imgScroll!!)
 
         grayScale = Mat()
@@ -32,7 +32,7 @@ class CannyController {
 
     fun detectEdges() {
         if (lastThreshholdValue != threshholdSlider?.value) {
-            processedImage = ImageUtils.imageToMat(Context.image!!)
+            processedImage = ImageUtils.imageToMat(Context.images.first())
             processedImage = this.doCanny(processedImage!!)
             lastThreshholdValue = threshholdSlider!!.value
         }
@@ -40,7 +40,7 @@ class CannyController {
     }
 
     fun restoreImage() {
-        imageView?.image = Context.image
+        imageView?.image = Context.images.last()
     }
 
     private fun doCanny(frame: Mat): Mat {
